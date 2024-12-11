@@ -1,0 +1,64 @@
+def remove(self, value):
+    if self.root is None:
+        return False
+
+    parent = None
+    cur_node = self.root
+
+    while cur_node:
+        if value < cur_node.value:
+            parent = cur_node
+            cur_node = cur_node.left
+        elif value > cur_node.value:
+            parent = cur_node
+            cur_node = cur_node.right
+        else:
+            # Node to be removed is found
+            # Case 1: Node has no children (leaf node)
+            if cur_node.left is None and cur_node.right is None:
+                if parent is None:
+                    self.root = None  # Tree had only one node
+                elif parent.left == cur_node:
+                    parent.left = None
+                else:
+                    parent.right = None
+
+            # Case 2: Node has only one child
+            elif cur_node.left is None:
+                if parent is None:
+                    self.root = cur_node.right
+                elif parent.left == cur_node:
+                    parent.left = cur_node.right
+                else:
+                    parent.right = cur_node.right
+
+            elif cur_node.right is None:
+                if parent is None:
+                    self.root = cur_node.left
+                elif parent.left == cur_node:
+                    parent.left = cur_node.left
+                else:
+                    parent.right = cur_node.left
+
+            # Case 3: Node has two children
+            else:
+                # Find the smallest value in the right subtree (in-order successor)
+                successor = cur_node.right
+                successor_parent = cur_node
+
+                while successor.left:
+                    successor_parent = successor
+                    successor = successor.left
+
+                # Replace current node's value with successor's value
+                cur_node.value = successor.value
+
+                # Remove the successor node
+                if successor_parent.left == successor:
+                    successor_parent.left = successor.right
+                else:
+                    successor_parent.right = successor.right
+
+            return True  # Node successfully removed
+
+    return False  # Node not found

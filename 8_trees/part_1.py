@@ -197,10 +197,11 @@ class BinarySearchTree:
             return False
 
         cur_node = self.root
+        parent = None
 
-        # while cur_node:
-           # find node
-           if cur_node.value == data:
+        while cur_node:
+            # find node
+            if cur_node.value == data:
                 # found
                 # is a leaf node
                 if cur_node.right is None and cur_node.left is None:
@@ -261,3 +262,62 @@ bst.remove(12)
 # bst.remove(10)
 print()
 bst.print_tree()
+
+
+# in production u want to have a balanced tree that automatically rebalances it self e.g avl and black red tree so we dont have edge cases u dont need to code it urself there a libraries that implement this u need to just know it exist
+
+# binary heap 
+'''
+lookup 0(n)
+insert 0(logN)
+delete 0(logN)
+
+in binary tree every child belong to a parent node that has a greater priority or value but in heap every child belongs to a parent node that as a lesser value this is a min heap and the root node is the smallest but in the binary tree is a max heap
+
+in a binary heap left and right can be any value as long as its less than parent node
+
+a heap is used in any algo where ordering is important
+its used a lot in data storage, priority queues, sorting algorithms
+
+heaps add data to a tree from left to right and then bubles up if its not in the right order
+
+
+in arrays we have random access 
+in linked list we can change things dynamically
+
+note:
+memory heap is not the same as the heap datastruc and has no real relationship with the data struc 
+
+memory heap is a heap of memory e.g if u are talking about a language runtime
+'''
+
+'''
+the beauty of binary heap is that they take up the least amount of space as possible
+because its always left to right so there is not unbalanced tree and they preserve the order of insertion 
+priority queue - elements with a higher priority are served before elements with a lower priority  
+
+binary heaps 
+better than 0(n)
+priority 
+flexible size 
+fast insert
+
+
+cons 
+slow lookups - even though they are slow u want to just use binary heaps find the when u want to find max or min 
+ the top root node is the max or min
+'''
+
+'''
+a trie is a special tree used in searching most ofter with text and it can outperform binary search tree, hash tables and both data struc we can talk about 
+they allow u to know if a word or part of a word exist 
+it may have an empty root node which the starting point
+another name for a trie is a prefixed tree 
+
+its quiet efficient in solving these problems in relation to string its used for searching words in dictionary , ip routing, and auto sugestion the benefit of this is speed and space 
+the big o of a trie is O of length 
+o(length of the word)
+
+space complexity 
+we store the word in one location and children are linked to it because of that u dont have to store the words in multiple location
+'''
